@@ -144,7 +144,8 @@ export const dateTimeForTimeZone = (
   input?: DateTimeInput,
   formatInput?: FormatInput
 ): DateTime => {
-  if (timezone && timezone !== 'browser') {
+  // 'default' is a placeholder for "use the user/org preference", not an IANA zone name
+  if (timezone && timezone !== 'browser' && timezone !== 'default') {
     if (typeof input === 'string' && formatInput) {
       return asDateTime(moment.tz(input, formatInput, timezone));
     }
